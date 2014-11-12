@@ -14,6 +14,8 @@
 # if a SCSI logical name was skipped; on TD's system
 # disks were numbered 1,3...49 rather than 0..47 as
 # the previous code assumed
+#
+# Trigger changes without rebooting: "udevadm trigger"
 
 # Disk rules
 SUBSYSTEM=="block", KERNEL=="sd[a-z]", PROGRAM="/etc/udev/scripts/solaris-name.sh %p", ENV{SOLARIS_NAME}="$result", SYMLINK+="disk/by-controller/$env{SOLARIS_NAME}"
