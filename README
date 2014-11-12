@@ -1,7 +1,12 @@
 Author: Tom Downes <thomas.downes@ligo.org>
 Wed, 12 Nov 2014 16:30:51 -0600
 
-This udev rule set is derived from previous work (noted in solaris-name.sh) found here:
+Provides: a udev rule set appropriate for RHEL7-derived platforms that uniquely names
+disks in a Sun X4500 "Thumper" by controller and position within the controller according
+to conventions similar to that found under Solaris. The goal is to faciliate the transition
+from Solaris (a closed platform) to ZFS on Linux.
+
+This was derived from previous work (noted in solaris-name.sh) found here:
 
 https://wikitech.wikimedia.org/wiki/Platform-specific_documentation/Sun_Fire_X4500_and_X4540
 
