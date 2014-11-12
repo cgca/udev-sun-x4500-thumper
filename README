@@ -10,7 +10,7 @@ This is very similar to naming disks "by-path" (which I found does not automatic
 on an X4500 under CentOS 7.0) and is also similar to the ZFS on linux by-vdev
 configuration. But it might help a former Solaris administrator.
 
-This was derived from previous work (noted in solaris-name.sh) found here:
+This was derived from previous work by Mark Bergsma found here:
 
 https://wikitech.wikimedia.org/wiki/Platform-specific_documentation/Sun_Fire_X4500_and_X4540
 
