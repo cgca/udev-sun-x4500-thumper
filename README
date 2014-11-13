@@ -1,16 +1,17 @@
 Author: Tom Downes <thomas.downes@ligo.org>
 Wed, 12 Nov 2014 16:30:51 -0600
 
-Provides: a udev rule set appropriate for RHEL7-derived platforms that uniquely names
-disks in a Sun X4500 "Thumper" by controller and position within the controller according
-to conventions similar to that found under Solaris. The goal is to faciliate the transition
-from Solaris (a closed platform) to ZFS on Linux.
+Provides: a /etc/zfs/vdev_id.conf file for ZFS on linux to use to create
+meaningful names for disks while also identifying them in a way that is
+persistent across reboots and failures of individual disks. 
 
-This is very similar to naming disks "by-path" (which I found does not automatically work
-on an X4500 under CentOS 7.0) and is also similar to the ZFS on linux by-vdev
-configuration. But it might help a former Solaris administrator.
+The naming is slightly inspired by Solaris naming conventions in that each
+disk is named c${controller_id}t${disk_number_on_controller} followed by
+the physical slot location. So it's better than the Solaris naming convention
+in that it identifies both controller and physical location. :)
 
-This was derived from previous work by Mark Bergsma found here:
+The goal is to faciliate the transition from Solaris (a closed platform) to
+ZFS on Linux. This was inspired from previous work by Mark Bergsma found here:
 
 https://wikitech.wikimedia.org/wiki/Platform-specific_documentation/Sun_Fire_X4500_and_X4540
 
@@ -18,6 +19,7 @@ I have made changes that allow the rules to work in RHEL7-derived platforms and 
 account for the fact that my system skips a couple numbers in identifying hard disks
 (1,3..49) instead of (0..47) as the website above implies I should find.
 
-I believe that these changes may be X4540 compatible, but I have not verified the claim.
+The mapping is only valid for Sun X4500 systems. There is an alternative mapping for
+X4540s that I hope to soon support.
 
 This code is released freely under rules governed by GPLv3.
