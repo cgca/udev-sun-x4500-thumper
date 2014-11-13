@@ -65,12 +65,12 @@ declare -A slot_map=( \
 alldisks=($(find /sys/devices -regex '.*sd[a-z]+$' -exec basename {} \;))
 
 # count controllers
-n_controllers=$(find /sys/devices -regex '.*sd[a-z]+$' | awk -F '/' '{print $6}' | sort | uniq | wc -)
+n_controllers=$(find /sys/devices -regex '.*sd[a-z]+$' | awk -F '/' '{print $6}' | sort | uniq | wc -l)
 
 # count disks
 n_disks=$(find /sys/devices -regex '.*sd[a-z]+$' | awk -F '/' '{print $10}' | awk -F ':' '{print $1}' | sort -g | wc -l)
 
-if [ n_controllers -ne 6 && n_disks -ne 48]; then
+if [[ "${n_controllers}" -ne "6" || "${n_disks}" -ne "48" ]]; then
   echo "The correct number of controllers and disks are not present!"
   exit 1
 fi
