@@ -31,8 +31,8 @@ allpcidev=$(find /sys/devices -regex '.*sd[a-z]+$' | awk -F '/' '{print $6}' | s
 controller_id=$(get_index ${pcidev} ${allpcidev})
 
 # identify this disk's position within the controller (0-7)
-diskdev=$(echo $1 | awk -F '/' '{print $7}')
-alldiskdev=$(find /sys/devices -regex '.*sd[a-z]+$' | grep "${pcidev}" | awk -F '/' '{print $8}' | sort | uniq)
+diskdev=$(echo $1 | awk -F '/' '{print $7}' | sed 's/host//')
+alldiskdev=$(find /sys/devices -regex '.*sd[a-z]+$' | grep "${pcidev}" | awk -F '/' '{print $8}' | sed 's/host//' | sort -g | uniq)
 disk_id=$(get_index ${diskdev} ${alldiskdev})
 
 # print Solaris name to stdout for capture by udev 
